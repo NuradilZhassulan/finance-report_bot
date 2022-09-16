@@ -41,6 +41,15 @@ module.exports = {
                 [{text: 'ВСЕ', callback_data: 'все'}]
             ]
         })
+    },
+    earned_item: {
+        reply_markup: JSON.stringify({
+            inline_keyboard: [
+                [{text: 'ЗП', callback_data: 'зп'}, {text: 'Подработка', callback_data: 'подработка'}],
+                [{text: 'Подарили', callback_data: 'подарили'}, {text: 'Нашел', callback_data: 'нашел'}],
+                [{text: 'ВСЕ', callback_data: 'все'}]
+            ]
+        })
     }
 }
 
