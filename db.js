@@ -6,7 +6,21 @@ const db = new sqlite3.Database('./finance.db', sqlite3.OPEN_READWRITE, (err) =>
     console.log('Connection successful');
 });
 
-
+async function deleteDB() {
+    /* ---Удаляем все записи--- */
+    try {
+        const sql = `DELETE FROM records`;
+        return new Promise(function(resolve, reject) {
+            db.run(sql, (err) => {
+                if (err) reject(err.message);
+                resolve('🫡');
+            });
+        })
+    } catch (e) {
+        console.log(e);
+        throw e;
+    }
+}
 
 async function add_record(user_id, operation, amount, value, date) {
     /* ---Создаем запись о расходе/доходе--- */
@@ -125,24 +139,4 @@ async function get_records_filter(user_id, within, operation, value) {
     }
 }
 
-module.exports = { add_record, get_records, get_records_filter }
-
-
-
-
-// const sql = `DELETE FROM records`;
-// db.run(sql, (err)=>{
-//     if (err) return console.error(err.message);
-//     console.log('deleted correct');
-// });
-
-
-
-
-
-
-
-
-
-
-
+module.exports = { add_record, get_records, get_records_filter, deleteDB }
